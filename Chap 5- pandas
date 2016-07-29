@@ -1,0 +1,30 @@
+
+Chapter plan:
+1) Introduction to Pandas Data Structure
+    --Series
+    --DataFrames
+2) Essential Functionality
+    --ReIndexing
+    --Dropping entries from an axis
+    --Indexing selection & filtering
+    --Arithmatic & data alignment
+    --Function Application and Mapping
+    --Sorting and Ranking
+    Axis indexes with duplicate values
+3) Summarizing an Computing Descriptive Statistics
+    --Correlation and Covariance
+    --Unique Values
+    --Value Count and Membership
+4) Handling Missing Data
+    --Filtering Out Missing Data
+    --Filling in Missing Data
+5) Heirarchical Indexing
+    --Reordering and Sorting Levels
+    --Summary Statistics By Level
+    --Using a DataFrame Column
+6) Other Pandas Topic
+    --Integer Indexing
+    --Panel Data
+    
+    
+
