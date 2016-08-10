@@ -37,9 +37,8 @@ df3
 df4
 pd.merge(df3, df4, left_on='lkey', right_on='rkey')
 
-# By default merge does an 'inner' join; the keys in the result are the intersection.
-# Other possible options are 'left', 'right', and 'outer'. The outer join takes the
-# union of the keys, combining the effect of applying both left and right joins
+# By default merge does an 'inner' join; the keys in the result are the intersection. Other possible options are 'left', 'right', and
+# 'outer'. The outer join takes the union of the keys, combining the effect of applying both left and right joins
 pd.merge(df1, df2, how='outer')
 
 # Many-to-many merges have well-defined though not necessarily intuitive behavior.
@@ -49,9 +48,8 @@ df1
 df2
 pd.merge(df1, df2, on='key', how='left')
 
-# Many-to-many joins form the Cartesian product of the rows. Since there were 3 'b'
-# rows in the left DataFrame and 2 in the right one, there are 6 'b' rows in the result.
-# The join method only affects the distinct key values appearing in the result:
+# Many-to-many joins form the Cartesian product of the rows. Since there were 3 'b' rows in the left DataFrame and 2 in the right one, 
+# there are 6 'b' rows in the result. The join method only affects the distinct key values appearing in the result
 
 
 
@@ -267,8 +265,8 @@ df.unstack('state').stack('side')
 # A common way to store multiple time series in databases and CSV is in so-called long or stacked format
 ldata[:10]
 
-# DataFrame’s pivot method performs exactly this transformation. The first two values passed are the columns to be used as the row and column index,
-# and finally an optional value column to fill the DataFrame.
+# DataFrame’s pivot method performs exactly this transformation. The first two values passed are the columns to be used as the row and 
+# column index, and finally an optional value column to fill the DataFrame.
 pivoted = ldata.pivot('date', 'item', 'value')
 pivoted.head()
 
@@ -310,16 +308,14 @@ data.duplicated()
 data.drop_duplicates()
 
 
-# Both of these methods by default consider all of the columns; alternatively we can
-# specify any subset of them to detect duplicates. Suppose we had an additional column
-# of values and wanted to filter duplicates only based on the 'k1' column:
+# Both of these methods by default consider all of the columns; alternatively we can specify any subset of them to detect duplicates. 
+# Suppose we had an additional column of values and wanted to filter duplicates only based on the 'k1' column:
 data['v1'] = range(7)
 data
 data.drop_duplicates(['k1'])
 
 
-# duplicated and drop_duplicates by default keep the first observed value combination.
-# Passing keep='last' will return the last one
+# duplicated and drop_duplicates by default keep the first observed value combination. Passing keep='last' will return the last one
 data.drop_duplicates(['k1', 'k2'], keep='last')
 
 
@@ -344,9 +340,8 @@ meat_to_animal = {
 }
 
 
-# The map method on a Series accepts a function or dict-like object containing a mapping,
-# but here we have a small problem in that some of the meats above are capitalized and
-# others are not. Thus, we also need to convert each value to lower case:
+# The map method on a Series accepts a function or dict-like object containing a mapping, but here we have a small problem in that some
+# of the meats above are capitalized and others are not. Thus, we also need to convert each value to lower case:
 data['animal'] = data['food'].map(str.lower).map(meat_to_animal)
 data
 
@@ -402,8 +397,8 @@ data.rename(index=str.title, columns=str.upper) #all the column names will be ca
 # Notably, rename can be used in conjunction with a dict-like object providing new values for a subset of the axis labels
 data.rename(index={'OHIO': 'INDIANA'}, columns={'three': 'peekaboo'}) #Ohio will be replcaed with Indiana and three with Peekaboo
 
-# rename saves having to copy the DataFrame manually and assign to its index and col umns attributes. Should we wish to modify a data set in place, pass inplace=True. 
-# It always returns a reference to a DataFrame
+# rename saves having to copy the DataFrame manually and assign to its index and col umns attributes. Should we wish to modify a data
+# set in place, pass inplace=True. It always returns a reference to a DataFrame
 _ = data.rename(index={'OHIO': 'INDIANA'}, inplace=True)
 data
 
@@ -421,9 +416,8 @@ bins = [18, 25, 35, 60, 100]
 cats = pd.cut(ages, bins)
 cats
 
-# The object pandas returns is a special Categorical object. we can treat it like an array
-# of strings indicating the bin name; internally it contains a levels array indicating the
-# distinct category names along with a labeling for the ages data in the labels attribute:
+# The object pandas returns is a special Categorical object. we can treat it like an array of strings indicating the bin name; 
+# internally it contains levels array indicating the distinct category names along with a labeling for the ages data in labels attribute
 cats.codes
 cats.categories
 pd.value_counts(cats)
@@ -444,9 +438,8 @@ data = np.random.rand(20)
 pd.cut(data, 4, precision=2)
 
 
-# A closely related function, qcut, bins the data based on sample quantiles. Depending
-# on the distribution of the data, using cut will not usually result in each bin having the
-# same number of data points. Since qcut uses sample quantiles instead, by definition
+# A closely related function, qcut, bins the data based on sample quantiles. Depending on the distribution of the data, using cut will
+# not usually result in each bin having the same number of data points. Since qcut uses sample quantiles instead, by definition
 # we will obtain roughly equal-size bins
 data = np.random.randn(1000)   #Normally distributed
 cats = pd.qcut(data, 4) # Cut into quartiles
@@ -465,7 +458,8 @@ pd.qcut(data, [0, 0.1, 0.5, 0.9, 1.])
 
 #####  Detecting & Filtering Outliers    #########
 
-# Filtering or transforming outliers is largely a matter of applying array operations. Consider a DataFrame with some normally distributed data
+# Filtering or transforming outliers is largely a matter of applying array operations. Consider a DataFrame with some normally
+# distributed data
 np.random.seed(12345)
 data = DataFrame(np.random.randn(1000, 4))
 data.describe()
@@ -488,9 +482,8 @@ data.describe()
 
 #####  Permutation and Random Sampling   #########
 
-# Permuting (randomly reordering) a Series or the rows in a DataFrame is easy to do using
-# the numpy.random.permutation function. Calling permutation with the length of the axis
-# we want to permute produces an array of integers indicating the new ordering:
+# Permuting (randomly reordering) a Series or the rows in a DataFrame is easy to do using the numpy.random.permutation function.
+# Calling permutation with the length of the axis we want to permute produces an array of integers indicating the new ordering:
 df = DataFrame(np.arange(5 * 4).reshape(5, 4))
 sampler = np.random.permutation(5)
 sampler
@@ -516,11 +509,9 @@ draws
 
 ######  Computing Indicator/Dummy Variables  ########
 
-# Another type of transformation for statistical modeling or machine learning applications
-# is converting a categorical variable into a “dummy” or “indicator” matrix. If a
-# column in a DataFrame has k distinct values, we would derive a matrix or DataFrame
-# containing k columns containing all 1’s and 0’s. pandas has a get_dummies function for
-# doing this, though devising one werself is not difficult.
+# Another type of transformation for statistical modeling or machine learning applications is converting a categorical variable into
+# a “dummy” or “indicator” matrix. If a column in a DataFrame has k distinct values, we would derive a matrix or DataFrame containing 
+# k columns containing all 1’s and 0’s. pandas has a get_dummies function for doing this, though devising one werself is not difficult.
 df = DataFrame({'key': ['b', 'b', 'a', 'c', 'a', 'b'], 'data1': range(6)})
 df
 pd.get_dummies(df['key'])
@@ -535,7 +526,8 @@ df_with_dummy
 # If a row in a DataFrame belongs to multiple categories, things are a bit more complicated.
 # Let’s return to the MovieLens 1M dataset from earlier in the book
 mnames = ['movie_id', 'title', 'genres']
-movies = pd.read_table('C:\\Users\\sohail.ahmad\\Desktop\\PFDA\\datasets\ch02\\movielens\\movies.dat', sep='::', header=None,  engine='python' ,names=mnames)
+movies = pd.read_table('C:\\Users\\sohail.ahmad\\Desktop\\PFDA\\datasets\ch02\\movielens\\movies.dat', sep='::', header=None,  
+                                                                                               engine='python' ,names=mnames)
 
 movies[:10]
 
@@ -605,8 +597,7 @@ val.index(':')
 # Relatedly, count returns the number of occurrences of a particular substring
 val.count(',')
 
-# replace will substitute occurrences of one pattern for another. This is commonly used
-# to delete patterns, too, by passing an empty string
+# replace will substitute occurrences of one pattern for another. This is commonly used to delete patterns, too, by passing an empty string
 val.replace(',', '::')
 val.replace(',', '')
 
@@ -665,7 +656,7 @@ print regex.match(text)
 print regex.sub('REDACTED', text)
 
 #Suppose we wanted to find email addresses and simultaneously segment each address
-#into its 3 components: username, domain name, and domain suffix. To do this, put parentheses around the parts of the pattern to segment:
+#into its 3 components: username, domain name, and domain suffix. To do this, put parentheses around the parts of the pattern to segment
 pattern = r'([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})'
 regex = re.compile(pattern, flags=re.IGNORECASE)
 
@@ -704,9 +695,8 @@ data
 data.isnull()
 
 
-# String and regular expression methods can be applied (passing a lambda or other function)
-# to each value using data.map, but it will fail on the NA. To cope with this, Series
-#has concise methods for string operations that skip NA values. These are accessed
+# String and regular expression methods can be applied (passing a lambda or other function) to each value using data.map, but it will
+# fail on the NA. To cope with this, Series has concise methods for string operations that skip NA values. These are accessed
 #through Series’s str attribute; for example, we could check whether each email address has 'gmail' in it with str.contains:
 data.str.contains('gmail')
 
@@ -734,9 +724,8 @@ data.str[:5]
 # The US Department of Agriculture makes available a database of food nutrient information.
 # Ashley Williams, an English hacker, has made available a version of this database in JSON format
 
-# Each food has a number of identifying attributes along with two lists of nutrients and
-# portion sizes. Having the data in this form is not particularly amenable for analysis, so
-# we need to do some work to wrangle the data into a better form.
+# Each food has a number of identifying attributes along with two lists of nutrients and portion sizes. Having the data in this form is
+# not particularly amenable for analysis, so we need to do some work to wrangle the data into a better form.
 # After downloading and extracting the data from the link above, we can load it into
 # Python with any JSON library of our choosing. We’ll use the built-in Python json module
 import json
@@ -762,10 +751,9 @@ info
 pd.value_counts(info.group)[:10]
 
 
-# Now, to do some analysis on all of the nutrient data, it’s easiest to assemble the nutrients
-# for each food into a single large table. To do so, we need to take several steps. First, We’ll
-# convert each list of food nutrients to a DataFrame, add a column for the food id, and
-# append the DataFrame to a list. Then, these can be concatenated together with concat
+# Now, to do some analysis on all of the nutrient data, it’s easiest to assemble the nutrients for each food into a single large table.
+# To do so, we need to take several steps. First, We’ll convert each list of food nutrients to a DataFrame, add a column for the food 
+# id, and append the DataFrame to a list. Then, these can be concatenated together with concat
 
 nutrients = []
 
