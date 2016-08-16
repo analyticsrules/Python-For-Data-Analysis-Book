@@ -14,6 +14,7 @@ CHAPTER PLAN
 import numpy as np
 import pandas as pd
 from pandas import DataFrame, Series
+from numpy.random import randn
 
 # The merge function in pandas is the main entry point for using these algorithms on wer data
 df1 = DataFrame({'key': ['b', 'b', 'a', 'c', 'a', 'a', 'b'], 'data1': range(7)})
