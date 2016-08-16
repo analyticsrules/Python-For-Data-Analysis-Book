@@ -8,10 +8,14 @@ Chapter Plan:
 
 ####################     Reading and Writing Data in Text Format      ###############################################
 
-cat C:\\Users\\sohail.ahmad\\Desktop\\PFDA\\datasets\\ch06\\ex1.csv
-
+import numpy as np
 import pandas as pd
 from pandas import DataFrame, Series
+from numpy.random import randn
+
+cat C:\\Users\\sohail.ahmad\\Desktop\\PFDA\\datasets\\ch06\\ex1.csv
+
+
 
 # Since this is comma-delimited, we can use read_csv to read it into a DataFrame:
 df = pd.read_csv('C:\\Users\\sohail.ahmad\\Desktop\\PFDA\\datasets\\ch06\\ex1.csv')
