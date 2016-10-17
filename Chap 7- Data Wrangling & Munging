@@ -7,9 +7,6 @@ CHAPTER PLAN
 5) Example: USDA Food Database
 
 
-
-
-
 #######################           Combining and Merging Data Sets        ########################################
 import numpy as np
 import pandas as pd
@@ -283,7 +280,6 @@ pivoted['value'][:5]
 # Note that pivot is just a shortcut for creating a hierarchical index using set_index and reshaping with unstack
 unstacked = ldata.set_index(['date', 'item']).unstack('item')
 unstacked[:7]
-
 
 
 
